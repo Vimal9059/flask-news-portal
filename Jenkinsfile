@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/Vimal9059/flask-news-portal.git'
+                git branch: 'main', url: 'https://github.com/Vimal9059/flask-news-portal.git'
             }
         }
         stage('Build Docker Image') {
