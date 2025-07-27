@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 API_KEY = "9ae6894b8f5a41d598e1140cd7d58627"  # Replace with your NewsAPI key
 
-@app.route("/submit", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
     country = "us"
     headlines = []
