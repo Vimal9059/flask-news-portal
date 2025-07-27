@@ -1,5 +1,5 @@
 FROM python:3.9-slim
-WORKDIR /News_Project
+WORKDIR /app
 RUN apt update -y
 RUN pip install Flask
 RUN pip install requests
