@@ -1,25 +1,21 @@
-from flask import Flask, request, render_template
-import requests
+from flask import Flask, render_template
+import feedparser
 
 app = Flask(__name__)
-API_KEY = "9ae6894b8f5a41d598e1140cd7d58627"  # Replace with your NewsAPI key
 
-@app.route("/", methods=["GET", "POST"])
-def index():
-    country = "us"
-    headlines = []
+RSS_FEEDS = {
+    'us': 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en',
+    'in': 'https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en',
+    'ca': 'https://news.google.com/rss?hl=en-CA&gl=CA&ceid=CA:en',
+    'gb': 'https://news.google.com/rss?hl=en-GB&gl=GB&ceid=GB:en'
+}
 
-    if request.method == "POST":
-        country = request.form.get("country")
+@app.route('/')
+def home():
+    country = request.args.get('country', 'us')
+    feed = feedparser.parse(RSS_FEEDS.get(country, RSS_FEEDS['us']))
+    articles = feed.entries
+    return render_template('index.html', articles=articles, country=country)
 
-    url = f"https://newsapi.org/v2/top-headlines?country={country}&apiKey={API_KEY}"
-    response = requests.get(url)
-    data = response.json()
-
-    if data.get("status") == "ok":
-        headlines = data.get("articles")
-
-    return render_template("index.html", articles=headlines, country=country)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=9999)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=9999)

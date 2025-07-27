@@ -1,28 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title>Country News Portal</title>
+  <title>Google News - {{ country.upper() }}</title>
 </head>
 <body>
-    <h2>Get Top News by Country</h2>
-    <form method="POST">
-        <select name="country">
-            <option value="us">USA</option>
-            <option value="in">India</option>
-            <option value="gb">UK</option>
-            <option value="au">Australia</option>
-            <option value="ca">Canada</option>
-        </select>
-        <button type="submit">Fetch News</button>
-    </form>
+  <h1>Top News - {{ country.upper() }}</h1>
 
-    {% if articles %}
-        <ul>
-        {% for article in articles %}
-            <li><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+  <!-- Country Dropdown -->
+  <form method="get" action="/">
+    <label for="country">Select Country:</label>
+    <select name="country" id="country" onchange="this.form.submit()">
+      <option value="us" {% if country == 'us' %}selected{% endif %}>USA</option>
+      <option value="in" {% if country == 'in' %}selected{% endif %}>India</option>
+      <option value="gb" {% if country == 'gb' %}selected{% endif %}>UK</option>
+      <option value="ca" {% if country == 'ca' %}selected{% endif %}>Canada</option>
+    </select>
+  </form>
+
+  <!-- News List -->
+  <ul>
+    {% for article in articles %}
+      <li>
+        <a href="{{ article.link }}">{{ article.title }}</a><br>
+        <small>{{ article.published }}</small>
+      </li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
 
