@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/Vimal9059/flask-news-portal.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t flask-news-app .'
+            }
+        }
+        stage('Deploy Container') {
+            steps {
+                sh 'docker stop flask-news-app || true'
+                sh 'docker rm flask-news-app || true'
+                sh 'docker run -d -p 5000:5000 --name flask-news-app flask-news-app'
+            }
+        }
+    }
+}
+
