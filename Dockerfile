@@ -3,6 +3,6 @@ WORKDIR /News_Project
 RUN apt update -y
 RUN pip install Flask
 RUN pip install requests
-EXPOSE 5000
+EXPOSE 9999
 CMD ["python", "app.py"]
 
