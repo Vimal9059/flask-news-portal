@@ -14,5 +14,5 @@ RUN chmod +x update-noip.sh
 EXPOSE 9999
 
 # Run DNS updater and then the Flask app
-CMD ["sh", "-c", "./update-noip.sh && python app.py"]
+CMD ./update-noip.sh && python app.py
 
