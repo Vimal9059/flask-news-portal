@@ -13,19 +13,6 @@ RSS_FEEDS = {
     'nz': 'https://news.google.com/rss?hl=en-NZ&gl=NZ&ceid=NZ:en',
 }
 
-
-def update_noip_dns():
-    import requests
-
-    public_ip = requests.get("https://ifconfig.me/ip").text.strip()
-    headers = {
-        "Authorization": "Basic bG9ob3hlNTQ1NkAwdGlyZXMuY29tOlZpbWFsQDEyMw==",
-        "User-Agent": "topglobalnews-updater/1.0 (by Vimal)"
-    }
-    url = f"https://dynupdate.no-ip.com/nic/update?hostname=topglobalnews.zapto.org&myip={public_ip}"
-    response = requests.get(url, headers=headers)
-    return response.text
-
 @app.route('/')
 def home():
     country = request.args.get('country', 'us')
