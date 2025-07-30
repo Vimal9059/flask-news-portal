@@ -19,7 +19,8 @@ def update_noip_dns():
 
     public_ip = requests.get("https://ifconfig.me/ip").text.strip()
     headers = {
-        "Authorization": "Basic bG9ob3hlNTQ1NkAwdGlyZXMuY29tOlZpbWFsQDEyMw=="
+        "Authorization": "Basic bG9ob3hlNTQ1NkAwdGlyZXMuY29tOlZpbWFsQDEyMw==",
+        "User-Agent": "topglobalnews-updater/1.0 (by Vimal)"
     }
     url = f"https://dynupdate.no-ip.com/nic/update?hostname=topglobalnews.zapto.org&myip={public_ip}"
     response = requests.get(url, headers=headers)
