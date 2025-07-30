@@ -2,19 +2,18 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Copy project files
+# Copy all project files into the container
 COPY . /app
 
 # Install dependencies
 RUN pip install --no-cache-dir Flask feedparser requests
 
-# Ensure script is executable
+# Ensure update-noip.sh has execute permission
 RUN chmod +x update-noip.sh
 
 EXPOSE 9999
 
-# First run the DNS update script, then start the Flask app
-ENTRYPOINT ["./update-noip.sh"]
-CMD ["python", "app.py"]
+# Run DNS updater and then the Flask app
+CMD ./update-noip.sh && python app.py
 
 
