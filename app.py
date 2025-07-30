@@ -8,7 +8,8 @@ RSS_FEEDS = {
     'in': 'https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en',
     'ca': 'https://news.google.com/rss?hl=en-CA&gl=CA&ceid=CA:en',
     'gb': 'https://news.google.com/rss?hl=en-GB&gl=GB&ceid=GB:en',
-    'sg': 'https://news.google.com/rss?hl=en-SG&gl=SG&ceid=SG:en'
+    'sg': 'https://news.google.com/rss?hl=en-SG&gl=SG&ceid=SG:en',
+    'nz': 'https://news.google.com/rss?hl=en-NZ&gl=NZ&ceid=NZ:en',
 }
 
 @app.route('/')
